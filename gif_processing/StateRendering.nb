@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    688446,      13528]
-NotebookOptionsPosition[    681572,      13361]
-NotebookOutlinePosition[    681929,      13377]
-CellTagsIndexPosition[    681886,      13374]
+NotebookDataLength[    686125,      13467]
+NotebookOptionsPosition[    679671,      13308]
+NotebookOutlinePosition[    680028,      13324]
+CellTagsIndexPosition[    679985,      13321]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -3598,17 +3598,17 @@ ExpressionUUID->"4a06dd84-f507-4a61-a563-2939e1b6d21b"],
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`index$$ = 1, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`index$$ = 5, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`index$$], 1, 99, 1}}, Typeset`size$$ = {
-    462., {142., 148.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`index$169377$$ = 0}, 
+    879., {142., 148.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`index$171449$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`index$$ = 1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`index$$, $CellContext`index$169377$$, 0]}, 
+        Hold[$CellContext`index$$, $CellContext`index$171449$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -3633,7 +3633,7 @@ Cell[BoxData[
               1]["sendercount"]]]]]], 
       "Specifications" :> {{$CellContext`index$$, 1, 99, 1}}, "Options" :> {},
        "DefaultOptions" :> {}],
-     ImageSizeCache->{507., {188., 194.}},
+     ImageSizeCache->{924., {201., 207.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -3645,9 +3645,9 @@ Cell[BoxData[
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{3.7516466562246513`*^9, 3.751647770175754*^9, 
-  3.7516486762217817`*^9, 
-  3.751649190966378*^9},ExpressionUUID->"8cf321cf-bfac-4aca-8eff-\
-e32408d10425"]
+  3.7516486762217817`*^9, 3.751649190966378*^9, 
+  3.7516497782439337`*^9},ExpressionUUID->"e27c858d-3c7d-4103-817e-\
+68b88ae719eb"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3695,17 +3695,17 @@ Cell[BoxData[
 Cell[BoxData[
  TagBox[
   StyleBox[
-   DynamicModuleBox[{$CellContext`index$$ = 1, Typeset`show$$ = True, 
+   DynamicModuleBox[{$CellContext`index$$ = 2, Typeset`show$$ = True, 
     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
     "\"untitled\"", Typeset`specs$$ = {{
       Hold[$CellContext`index$$], 1, 99, 1}}, Typeset`size$$ = {
-    402., {106., 110.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`index$138563$$ = 0}, 
+    624., {106., 110.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`index$173399$$ = 0}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      1, StandardForm, "Variables" :> {$CellContext`index$$ = 1}, 
       "ControllerVariables" :> {
-        Hold[$CellContext`index$$, $CellContext`index$138563$$, 0]}, 
+        Hold[$CellContext`index$$, $CellContext`index$173399$$, 0]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
@@ -3727,7 +3727,7 @@ Cell[BoxData[
            1]["sendercount"]]]], 
       "Specifications" :> {{$CellContext`index$$, 1, 99, 1}}, "Options" :> {},
        "DefaultOptions" :> {}],
-     ImageSizeCache->{447., {151., 157.}},
+     ImageSizeCache->{669., {164., 170.}},
      SingleEvaluation->True],
     Deinitialization:>None,
     DynamicModuleValues:>{},
@@ -3739,52 +3739,9 @@ Cell[BoxData[
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{{3.751646805770873*^9, 3.7516468238815107`*^9}, 
-   3.751648424040763*^9},ExpressionUUID->"4c48403f-0751-4248-940f-\
-c69e20d1eae7"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Values","invrl",
-   "\"The argument \\!\\(\\*RowBox[{\\\"{\\\", \\\"\\\\\\\"0\\\\\\\"\\\", \
-\\\"}\\\"}]\\) is not a valid Association or a list of rules.\"",2,419,81,
-   29337546488392891108,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.751648625052568*^9},ExpressionUUID->"4d4123a8-7376-4436-8b2f-\
-3886c77a80ff"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Values","invrl",
-   "\"The argument \\!\\(\\*RowBox[{\\\"{\\\", \\\"\\\\\\\"0\\\\\\\"\\\", \
-\\\"}\\\"}]\\) is not a valid Association or a list of rules.\"",2,419,82,
-   29337546488392891108,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.7516486251141148`*^9},ExpressionUUID->"6e5fa581-cc6e-4e00-9568-\
-a494619a2b85"],
-
-Cell[BoxData[
- TemplateBox[{
-  "Values","invrl",
-   "\"The argument \\!\\(\\*RowBox[{\\\"{\\\", \\\"\\\\\\\"0\\\\\\\"\\\", \
-\\\"}\\\"}]\\) is not a valid Association or a list of rules.\"",2,419,83,
-   29337546488392891108,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.751648625165053*^9},ExpressionUUID->"3784f4de-f8cc-4852-bc66-\
-ad19cea5fe63"],
-
-Cell[BoxData[
- TemplateBox[{
-  "General","stop",
-   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Values\\\", \\\"::\\\", \
-\\\"invrl\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
-calculation.\"",2,419,84,29337546488392891108,"Local"},
-  "MessageTemplate"]], "Message", "MSG",
- CellChangeTimes->{
-  3.751648625195212*^9},ExpressionUUID->"08a6dc76-1d43-49f5-8dd0-\
-16e2e5a645fd"]
+   3.751648424040763*^9, 
+   3.751649844910968*^9},ExpressionUUID->"f3ef1d05-aee3-4d91-9449-\
+85c384e0be35"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3993,7 +3950,8 @@ Cell[BoxData[
                 {"\<\"\"\>", 
                  AnimatorBox[Dynamic[$CellContext`i87$$], {1, 10, 1},
                   AnimationRate->Automatic,
-                  AnimationRunTime->22.275781631469727`,
+                  AnimationRunTime->736.5477848052979,
+                  AnimationRunning->False,
                   AnimationTimeIndex->2.2757816314697266`,
                   
                   AppearanceElements->{
@@ -4240,6 +4198,7 @@ Cell[BoxData[
                     ArrowBox[{{0., 5.}, {4., 6.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -4491,7 +4450,6 @@ Cell[BoxData[
                     ArrowBox[{{0., 1.}, {2., 2.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
-                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -4877,6 +4835,7 @@ Cell[BoxData[
                     ArrowBox[{{4., 8.}, {1., 9.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -5130,6 +5089,7 @@ Cell[BoxData[
                     ArrowBox[{{3., 3.}, {0., 4.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -5253,6 +5213,7 @@ Cell[BoxData[
                     
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
+                    
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
 {-0.9077234401349075, 
                     0.22712984822934246`}, {-0.8168768971332212, \
@@ -5894,6 +5855,7 @@ Cell[BoxData[
                     {GrayLevel[1], Opacity[0.7], EdgeForm[None], 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -6057,7 +6019,6 @@ Cell[BoxData[
                     {GrayLevel[1], Opacity[0.7], EdgeForm[None], 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
-                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -6399,7 +6360,6 @@ Cell[BoxData[
                     ArrowBox[{{0., 1.}, {2., 2.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
-                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -6618,6 +6578,7 @@ Cell[BoxData[
                     ArrowBox[{{0., 5.}, {4., 6.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -6745,7 +6706,6 @@ Cell[BoxData[
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
 {-0.9077234401349075, 
-                    
                     0.22712984822934246`}, {-0.8168768971332212, \
 -8.881784197001252*^-16}}, {{-1., -0.31249915682967977`}, \
 {-0.8749949409780782, -8.881784197001252*^-16}, {-1., 0.3124991568296789}, {
@@ -7083,6 +7043,7 @@ Cell[BoxData[
                     ArrowBox[{{0., 1.}, {2., 2.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -7118,7 +7079,6 @@ Cell[BoxData[
                     ArrowBox[{{0., 4.}, {0., 5.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
-                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -7339,6 +7299,7 @@ Cell[BoxData[
                     ArrowBox[{{4., 8.}, {1., 9.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -7670,7 +7631,6 @@ Cell[BoxData[
                     ArrowBox[{{4., 6.}, {2., 7.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
-                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -8014,6 +7974,7 @@ Cell[BoxData[
                     ArrowBox[{{0., 5.}, {4., 6.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -8049,7 +8010,6 @@ Cell[BoxData[
                     ArrowBox[{{4., 8.}, {1., 9.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
-                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -8563,6 +8523,7 @@ Cell[BoxData[
                     ArrowBox[{{0., 5.}, {4., 6.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -8932,7 +8893,6 @@ Cell[BoxData[
                     ArrowBox[{{0., 5.}, {4., 6.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
-                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -8944,6 +8904,7 @@ Cell[BoxData[
                     ArrowBox[{{4., 6.}, {2., 7.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -10418,6 +10379,7 @@ Cell[BoxData[
                     {GrayLevel[1], Opacity[0.7], EdgeForm[None], 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -10911,7 +10873,6 @@ Cell[BoxData[
                     ArrowBox[{{4., 8.}, {1., 9.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
-                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -11246,7 +11207,6 @@ Cell[BoxData[
                     ArrowBox[{{2., 2.}, {3., 3.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
-                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -11428,6 +11388,7 @@ Cell[BoxData[
                     {GrayLevel[1], Opacity[0.7], EdgeForm[None], 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -12131,7 +12092,6 @@ Cell[BoxData[
                     ArrowBox[{{2., 7.}, {4., 8.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
-                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -12356,6 +12316,7 @@ Cell[BoxData[
                     ArrowBox[{{4., 8.}, {1., 9.}}]}, 
                     {Arrowheads[{{Medium, 0.8, {
                     GraphicsBox[
+                    
                     FilledCurveBox[{{{0, 2, 0}, {0, 1, 0}}, {{0, 2, 0}, {0, 1,
                      0}, {0, 1, 
                     0}}}, {{{-0.18091062394603785`, -8.881784197001252*^-16}, \
@@ -13284,78 +13245,64 @@ Cell[BoxData[
            RGBColor[1, 0, 0], 
            TagBox[
             PolygonBox[{{0, -4}, {0, 4}, {-4, 0}}], "Triangle"]}]}}], 
-      ArrowBox[{{0., 1.}, {2., 2.}}]}, 
+      ArrowBox[{{0., 1.}, {1., 2.}}]}, 
      {Arrowheads[{{0.015, 0.5, 
          GraphicsBox[{
            RGBColor[1, 0, 0], 
            TagBox[
             PolygonBox[{{0, -4}, {0, 4}, {-4, 0}}], "Triangle"]}]}}], 
-      ArrowBox[{{2., 2.}, {3., 3.}}]}, 
+      ArrowBox[{{1., 2.}, {3., 3.}}]}, 
      {Arrowheads[{{0.015, 0.5, 
          GraphicsBox[{
            RGBColor[1, 0, 0], 
            TagBox[
             PolygonBox[{{0, -4}, {0, 4}, {-4, 0}}], "Triangle"]}]}}], 
-      ArrowBox[{{3., 3.}, {0., 4.}}]}, 
+      ArrowBox[{{3., 3.}, {3., 4.}}]}, 
      {Arrowheads[{{0.015, 0.5, 
          GraphicsBox[{
            RGBColor[1, 0, 0], 
            TagBox[
             PolygonBox[{{0, -4}, {0, 4}, {-4, 0}}], "Triangle"]}]}}], 
-      ArrowBox[{{0., 4.}, {0., 5.}}]}, 
+      ArrowBox[{{3., 4.}, {3., 5.}}]}, 
      {Arrowheads[{{0.015, 0.5, 
          GraphicsBox[{
            RGBColor[1, 0, 0], 
            TagBox[
             PolygonBox[{{0, -4}, {0, 4}, {-4, 0}}], "Triangle"]}]}}], 
-      ArrowBox[{{0., 5.}, {4., 6.}}]}, 
+      ArrowBox[{{3., 5.}, {3., 6.}}]}, 
      {Arrowheads[{{0.015, 0.5, 
          GraphicsBox[{
            RGBColor[1, 0, 0], 
            TagBox[
             PolygonBox[{{0, -4}, {0, 4}, {-4, 0}}], "Triangle"]}]}}], 
-      ArrowBox[{{4., 6.}, {2., 7.}}]}, 
+      ArrowBox[{{3., 6.}, {0., 7.}}]}, 
      {Arrowheads[{{0.015, 0.5, 
          GraphicsBox[{
            RGBColor[1, 0, 0], 
            TagBox[
             PolygonBox[{{0, -4}, {0, 4}, {-4, 0}}], "Triangle"]}]}}], 
-      ArrowBox[{{2., 7.}, {4., 8.}}]}, 
+      ArrowBox[{{0., 7.}, {4., 8.}}]}, 
      {Arrowheads[{{0.015, 0.5, 
          GraphicsBox[{
            RGBColor[1, 0, 0], 
            TagBox[
             PolygonBox[{{0, -4}, {0, 4}, {-4, 0}}], "Triangle"]}]}}], 
-      ArrowBox[{{4., 8.}, {1., 9.}}]}, 
-     {Arrowheads[{{0.015, 0.5, 
-         GraphicsBox[{
-           RGBColor[1, 0, 0], 
-           TagBox[
-            PolygonBox[{{0, -4}, {0, 4}, {-4, 0}}], "Triangle"]}]}}], 
-      ArrowBox[{{1., 9.}, {2., 10.}}]}, 
-     {Arrowheads[{{0.015, 0.5, 
-         GraphicsBox[{
-           RGBColor[1, 0, 0], 
-           TagBox[
-            PolygonBox[{{0, -4}, {0, 4}, {-4, 0}}], "Triangle"]}]}}], 
-      ArrowBox[{{2., 10.}, {4., 11.}}]}}, 
+      ArrowBox[{{4., 8.}, {2., 9.}}]}}, 
     {Hue[0.6, 0.2, 0.8], EdgeForm[{GrayLevel[0], Opacity[0.7]}], 
      {RGBColor[0, 1, 0], DiskBox[{0, 1.}, 0.2]}, 
-     {GrayLevel[0.5], DiskBox[{2, 2.}, 0.2]}, 
+     {GrayLevel[0.5], DiskBox[{1, 2.}, 0.2]}, 
      {GrayLevel[0.5], DiskBox[{3, 3.}, 0.2]}, 
-     {RGBColor[0, 1, 0], DiskBox[{0, 4.}, 0.2]}, 
-     {RGBColor[0, 1, 0], DiskBox[{0, 5.}, 0.2]}, 
-     {GrayLevel[0.5], DiskBox[{4, 6.}, 0.2]}, 
-     {GrayLevel[0.5], DiskBox[{2, 7.}, 0.2]}, 
+     {GrayLevel[0.5], DiskBox[{3, 4.}, 0.2]}, 
+     {GrayLevel[0.5], DiskBox[{3, 5.}, 0.2]}, 
+     {GrayLevel[0.5], DiskBox[{3, 6.}, 0.2]}, 
+     {RGBColor[0, 1, 0], DiskBox[{0, 7.}, 0.2]}, 
      {GrayLevel[0.5], DiskBox[{4, 8.}, 0.2]}, 
-     {GrayLevel[0.5], DiskBox[{1, 9.}, 0.2]}, 
-     {GrayLevel[0.5], DiskBox[{2, 10.}, 0.2]}, 
-     {GrayLevel[0.5], DiskBox[{4, 11.}, 0.2]}}}}]], "Output",
+     {GrayLevel[0.5], DiskBox[{2, 9.}, 0.2]}}}}]], "Output",
  CellChangeTimes->{{3.750062137469797*^9, 3.7500621723392353`*^9}, {
    3.750062209934224*^9, 3.750062241165423*^9}, {3.750062278954855*^9, 
-   3.7500622983573437`*^9}, 3.7510584974331827`*^9, 
-   3.751649126608057*^9},ExpressionUUID->"8579470a-f117-4653-b5f6-\
-53f86628ed57"]
+   3.7500622983573437`*^9}, 3.7510584974331827`*^9, 3.751649126608057*^9, 
+   3.751649860240163*^9},ExpressionUUID->"4fa76705-cf40-435f-a9ef-\
+7b5f19f5c5de"]
 }, Open  ]]
 }, Open  ]]
 },
@@ -13475,7 +13422,7 @@ Cell[55851, 1329, 539, 13, 32, "Output", "ExpressionUUID" -> \
 Cell[56393, 1344, 521, 13, 32, "Output", "ExpressionUUID" -> \
 "741cfc9e-50f8-4601-a47e-2a230ff0036b"]
 }, Open  ]],
-Cell[56929, 1360, 14083, 293, 928, "Input", "ExpressionUUID" -> \
+Cell[56929, 1360, 14083, 293, 894, "Input", "ExpressionUUID" -> \
 "1ca48a72-6833-4688-9e11-b9d33f98b969"],
 Cell[CellGroupData[{
 Cell[71037, 1657, 258, 6, 32, "Input", "ExpressionUUID" -> \
@@ -13498,36 +13445,28 @@ Cell[156267, 3442, 5368, 111, 117, "Output", "ExpressionUUID" -> \
 Cell[CellGroupData[{
 Cell[161672, 3558, 1412, 37, 96, "Input", "ExpressionUUID" -> \
 "4a06dd84-f507-4a61-a563-2939e1b6d21b"],
-Cell[163087, 3597, 2261, 52, 399, "Output", "ExpressionUUID" -> \
-"8cf321cf-bfac-4aca-8eff-e32408d10425"]
+Cell[163087, 3597, 2285, 52, 425, "Output", "ExpressionUUID" -> \
+"e27c858d-3c7d-4103-817e-68b88ae719eb"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[165385, 3654, 1363, 38, 75, "Input", "ExpressionUUID" -> \
+Cell[165409, 3654, 1363, 38, 75, "Input", "ExpressionUUID" -> \
 "90fb7f3c-daef-467c-bd4b-57f7fbfed3e3"],
-Cell[166751, 3694, 2145, 48, 325, "Output", "ExpressionUUID" -> \
-"4c48403f-0751-4248-940f-c69e20d1eae7"],
-Cell[168899, 3744, 376, 9, 24, "Message", "ExpressionUUID" -> \
-"4d4123a8-7376-4436-8b2f-3886c77a80ff"],
-Cell[169278, 3755, 378, 9, 24, "Message", "ExpressionUUID" -> \
-"6e5fa581-cc6e-4e00-9568-a494619a2b85"],
-Cell[169659, 3766, 376, 9, 24, "Message", "ExpressionUUID" -> \
-"3784f4de-f8cc-4852-bc66-ad19cea5fe63"],
-Cell[170038, 3777, 401, 9, 24, "Message", "ExpressionUUID" -> \
-"08a6dc76-1d43-49f5-8dd0-16e2e5a645fd"]
+Cell[166775, 3694, 2171, 49, 351, "Output", "ExpressionUUID" -> \
+"f3ef1d05-aee3-4d91-9449-85c384e0be35"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[170476, 3791, 6030, 127, 201, "Input", "ExpressionUUID" -> \
+Cell[168983, 3748, 6030, 127, 201, "Input", "ExpressionUUID" -> \
 "b7de4d1f-498e-43b0-8323-3e95b8d40486"],
-Cell[176509, 3920, 3545, 50, 32, "Output", "ExpressionUUID" -> \
+Cell[175016, 3877, 3545, 50, 32, "Output", "ExpressionUUID" -> \
 "fec7a6c3-77b6-4d77-ba4c-39242c75799c"],
-Cell[180057, 3972, 496551, 9255, 307, "Output", "ExpressionUUID" -> \
+Cell[178564, 3929, 496655, 9259, 307, "Output", "ExpressionUUID" -> \
 "454a7e28-a77a-4995-8ad4-fce81f2c849c"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[676645, 13232, 1659, 41, 243, "Input", "ExpressionUUID" -> \
+Cell[675256, 13193, 1659, 41, 243, "Input", "ExpressionUUID" -> \
 "2fc05b65-1b18-4074-80c9-9c5c47ac58cd"],
-Cell[678307, 13275, 3237, 82, 481, "Output", "ExpressionUUID" -> \
-"8579470a-f117-4653-b5f6-53f86628ed57"]
+Cell[676918, 13236, 2725, 68, 481, "Output", "ExpressionUUID" -> \
+"4fa76705-cf40-435f-a9ef-7b5f19f5c5de"]
 }, Open  ]]
 }, Open  ]]
 }
