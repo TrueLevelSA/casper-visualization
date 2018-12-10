@@ -8,15 +8,14 @@ csplit states2.dat '/new chain/' '{100}'
 for file in xx*; do
     gsed -i '1d' $file
     echo "[\n$(cat $file)" > $file
-    gsed -i 's/Some(Block(ProtoBlock//g' $file
-    gsed -i 's/Block(ProtoBlock//g' $file
-    gsed -i 's/, txs: {} //g' $file
-    gsed -i 's/LatestMsgs(//g' $file
-    gsed -i 's/(//g' $file
-    gsed -i 's/)//g' $file
+    gsed -i 's/(/[/g' $file
+    gsed -i 's/)/]/g' $file
+    gsed -i 's/ ->/,/g' $file
+    gsed -i 's/LatestMsgs//g' $file
     gsed -i '$ s/.$//' $file
     echo "]" >> $file
     gsed -i 's/],\n]/]\n]/g' $file
     gsed -i 's/M\([[:digit:]]\)/M\1:/g' $file
-    sed -E "s/([a-z]+|N[a-z]+|M[0-9]+|[0-9]+)/\"\\1\"/g" $file > processed$file'.json'
+    sed -i '' -E "s/(0x([0-9]|[a-f])+|([A-Z]|[a-z])+|M[0-9]+)/\"\\1\"/g" $file
+    gsed 's/\([[:digit:]]\):/"\1":/g' $file > processed$file'.json'
 done
