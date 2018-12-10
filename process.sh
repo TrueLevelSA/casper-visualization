@@ -18,4 +18,5 @@ for file in xx*; do
     gsed -i 's/M\([[:digit:]]\)/M\1:/g' $file
     sed -i '' -E "s/(0x([0-9]|[a-f])+|([A-Z]|[a-z])+|M[0-9]+)/\"\\1\"/g" $file
     gsed 's/\([[:digit:]]\):/"\1":/g' $file > processed$file'.json'
+    rm $file
 done
