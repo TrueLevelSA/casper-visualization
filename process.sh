@@ -1,9 +1,4 @@
-# #!/usr/local/bin/zsh
 cp states.dat states2.dat
-gsed -i '1d' states2.dat
-gsed -i '/tests/d' states2.dat
-gsed -i '/test example::/d' states2.dat
-gsed -i '/test result:/d' states2.dat
 csplit states2.dat '/new chain/' '{100}'
 for file in xx*; do
     gsed -i '1d' $file
