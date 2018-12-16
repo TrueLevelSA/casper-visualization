@@ -1,5 +1,5 @@
-cp states.dat states2.dat
-csplit states2.dat '/new chain/' '{100}'
+cp ../blockchain_test.log .
+csplit blockchain_test.log '/new chain/' '{100}'
 for file in xx*; do
     gsed -i '1d' $file
     echo "[\n$(cat $file)" > $file
