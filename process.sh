@@ -1,5 +1,5 @@
 cp ../blockchain_test.log .
-csplit blockchain_test.log '/new chain/' '{100}'
+csplit blockchain_test.log '/new chain/' '{100}' &> /dev/null
 for file in xx*; do
     gsed -i '1d' $file
     echo "[\n$(cat $file)" > $file
