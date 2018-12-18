@@ -40,7 +40,7 @@ do
     $SED -i 's/],\n]/]\n]/g' $file
     $SED -i 's/M\([[:digit:]]\)/M\1:/g' $file
     $SED -i -E "s/(0x([0-9]|[a-f])+|([A-Z]|[a-z])+|M[0-9]+)/\"\\1\"/g" $file
-    $SED 's/\([[:digit:]]\):/"\1":/g' $file > $GENERATION_FOLDER/proces$SED$file'.json'
+    $SED 's/\([[:digit:]]\):/"\1":/g' $file > $GENERATION_FOLDER/processed$file'.json'
     rm $file
 done
 
