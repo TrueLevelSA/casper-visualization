@@ -2,6 +2,14 @@
 set -e
 set -u
 
+SED=sed
+CSPLIT=csplit
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    SED=gsed
+    CSPLIT=gcsplit
+fi
+
 # public
 VISUALIZATION_DIR="../"
 
@@ -16,23 +24,23 @@ mkdir -p $GENERATION_FOLDER
 cp $VISUALIZATION_DIR/$LAST_VISU .
 
 # split the file in test cases files
-csplit --prefix="$PREFIX" $LAST_VISU '/new chain/' '{*}'
+$CSPLIT --prefix="$PREFIX" $LAST_VISU '/new chain/' '{*}' &> /dev/null
 
 # format each file as json
 for file in ${PREFIX}*
 do
-    sed -i '1d' $file
+    $SED -i '1d' $file
     echo -e "[\n$(cat $file)" > $file
-    sed -i 's/(/[/g' $file
-    sed -i 's/)/]/g' $file
-    sed -i 's/ ->/,/g' $file
-    sed -i 's/LatestMsgs//g' $file
-    sed -i '$ s/.$//' $file
+    $SED -i 's/(/[/g' $file
+    $SED -i 's/)/]/g' $file
+    $SED -i 's/ ->/,/g' $file
+    $SED -i 's/LatestMsgs//g' $file
+    $SED -i '$ s/.$//' $file
     echo "]" >> $file
-    sed -i 's/],\n]/]\n]/g' $file
-    sed -i 's/M\([[:digit:]]\)/M\1:/g' $file
-    sed -i -E "s/(0x([0-9]|[a-f])+|([A-Z]|[a-z])+|M[0-9]+)/\"\\1\"/g" $file
-    sed 's/\([[:digit:]]\):/"\1":/g' $file > $GENERATION_FOLDER/processed$file'.json'
+    $SED -i 's/],\n]/]\n]/g' $file
+    $SED -i 's/M\([[:digit:]]\)/M\1:/g' $file
+    $SED -i -E "s/(0x([0-9]|[a-f])+|([A-Z]|[a-z])+|M[0-9]+)/\"\\1\"/g" $file
+    $SED 's/\([[:digit:]]\):/"\1":/g' $file > $GENERATION_FOLDER/proces$SED$file'.json'
     rm $file
 done
 
