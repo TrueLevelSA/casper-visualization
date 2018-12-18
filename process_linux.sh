@@ -3,7 +3,7 @@ set -e
 set -u
 
 # public
-VISUALIZATION_DIR="../rust/core-cbc/visualization"
+VISUALIZATION_DIR="../"
 
 # private
 PREFIX=_state
@@ -11,14 +11,10 @@ GENERATION_FOLDER=./generated
 COPY=states_copy.dat
 
 # pick last file generated in the $VISUALIZATION_DIR
-LAST_VISU=$(ls -Art $VISUALIZATION_DIR | tail -n1)
+LAST_VISU=blockchain_test.log
 
 mkdir -p $GENERATION_FOLDER
 cp $VISUALIZATION_DIR/$LAST_VISU $COPY
-sed -i '1d' $COPY
-sed -i '/tests/d' $COPY
-sed -i '/test example::/d' $COPY
-sed -i '/test result:/d' $COPY
 
 # split the file in test cases files
 csplit --prefix="$PREFIX" $COPY '/new chain/' '{*}'
