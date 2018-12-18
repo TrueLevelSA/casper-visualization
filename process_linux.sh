@@ -14,14 +14,14 @@ COPY=states_copy.dat
 LAST_VISU=$(ls -Art $VISUALIZATION_DIR | tail -n1)
 
 mkdir -p $GENERATION_FOLDER
-cp $VISUALIZATION_DIR/$LAST_VISU states2.dat
-sed -i '1d' states2.dat
-sed -i '/tests/d' states2.dat
-sed -i '/test example::/d' states2.dat
-sed -i '/test result:/d' states2.dat
+cp $VISUALIZATION_DIR/$LAST_VISU $COPY
+sed -i '1d' $COPY
+sed -i '/tests/d' $COPY
+sed -i '/test example::/d' $COPY
+sed -i '/test result:/d' $COPY
 
 # split the file in test cases files
-csplit --prefix="$PREFIX" states2.dat '/new chain/' '{*}'
+csplit --prefix="$PREFIX" $COPY '/new chain/' '{*}'
 
 # format each file as json
 for file in ${PREFIX}*
@@ -40,3 +40,5 @@ do
     sed 's/\([[:digit:]]\):/"\1":/g' $file > $GENERATION_FOLDER/processed$file'.json'
     rm $file
 done
+
+rm $COPY

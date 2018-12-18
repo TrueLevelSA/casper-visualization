@@ -12,3 +12,4 @@
 
 ### Run 
 - `pipenv run jupyter notebook`
+- If the figure is not interactive, you may have to re-run all cells (manually?) to activate the interactive mode.
