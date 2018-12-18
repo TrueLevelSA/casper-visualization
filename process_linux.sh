@@ -8,16 +8,15 @@ VISUALIZATION_DIR="../"
 # private
 PREFIX=_state
 GENERATION_FOLDER=./generated
-COPY=states_copy.dat
 
 # pick last file generated in the $VISUALIZATION_DIR
 LAST_VISU=blockchain_test.log
 
 mkdir -p $GENERATION_FOLDER
-cp $VISUALIZATION_DIR/$LAST_VISU $COPY
+cp $VISUALIZATION_DIR/$LAST_VISU .
 
 # split the file in test cases files
-csplit --prefix="$PREFIX" $COPY '/new chain/' '{*}'
+csplit --prefix="$PREFIX" $LAST_VISU '/new chain/' '{*}'
 
 # format each file as json
 for file in ${PREFIX}*
@@ -37,4 +36,4 @@ do
     rm $file
 done
 
-rm $COPY
+rm $LAST_VISU
