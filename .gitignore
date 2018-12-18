@@ -1,4 +1,5 @@
 generated
+*.dat
 MANIFEST
 build
 dist
