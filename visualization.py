@@ -51,16 +51,6 @@ class Step(object):
             self._sender_count, self._cliques, self._last_messages)
         return s
 
-    def show_plot(self, max_length, axes):
-        length = len(self._last_messages)-1
-        for i, view in enumerate(self._last_messages):
-            view.add_plot(self._sender_count, max_length, axes[length-i])
-            axes[length-i].set_ylabel(i)
-        # plt.setp(axes,
-        #          xticks=range(1, max_length),
-        #          yticks=range(0, self._sender_count),
-        #          )
-
 
 class View(object):
     def __init__(self, json_content):
@@ -71,10 +61,6 @@ class View(object):
 
     def __repr__(self):
         return "View%s" % self._messages
-
-    def add_plot(self, sender_count, max_length, axes):
-        for key in sorted(self._messages.keys()):
-            self._messages[key].add_plot(sender_count, self.heights, axes)
 
     def get_max_length(self):
         return max([len(m._justification) for m in self._messages.values()])
@@ -99,12 +85,6 @@ class Message(object):
 
     def __repr__(self):
         return "Message{name: %s, justification: %s}" % (self._name, self._justification)
-
-    def add_plot(self, sender_count, heights, axes):
-        # m is None if its the genesis remove "if m is not None" to show it on the graphs
-        x = [heights[m[1]] if m is not None else heights[m] for m in self._justification if m is not None]
-        y = [-1 if m is None else int(m[0]) for m in self._justification if m is not None]
-        axes.plot(x, y, 'bo', linestyle='solid')
 
 
 class IndexSteps(object):
@@ -153,7 +133,6 @@ class IndexSteps(object):
         self._clear_axes()
 
         current_step = self._log_file._steps[self._selected_step]
-        # current_step.show_plot(self._log_file._max_length, self._axes)
         length = len(current_step._last_messages) - 1
 
         for i, view in enumerate(current_step._last_messages):
