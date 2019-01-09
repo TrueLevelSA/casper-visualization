@@ -141,7 +141,9 @@ class IndexSteps(object):
                 x = [view.heights[m[1]] for m in message._justification if m is not None]
                 y = [-1 if m is None else int(m[0]) for m in message._justification if m is not None]
                 self._axes[length - i].plot(x, y, 'bo', linestyle='solid')
-            self._axes[length-1].set_ylabel(i)
+            self._axes[length-i].set_ylabel(i)
+
+        print(self._axes)
 
         # set x,y ticks for each axes
         plt.setp(
