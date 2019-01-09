@@ -10,6 +10,11 @@
 ### Install
 - `pipenv install`
 
-### Run 
+### Run
 - `pipenv run jupyter notebook`
 - If the figure is not interactive, you may have to re-run all cells (manually?) to activate the interactive mode.
+
+### Run (standalone)
+- Install [tcl/tk](https://tcl.tk/)
+  - `sudo apt-get install tk` or `sudo pacman -S tk`
+- `pipenv run python visualization.py`
