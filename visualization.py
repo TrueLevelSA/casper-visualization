@@ -139,7 +139,7 @@ class IndexSteps(object):
             for key, in sorted(view._messages):
                 message = view._messages[key]
                 x = [view.heights[m[1]] for m in message._justification if m is not None]
-                y = [-1 if m is None else int(m[0]) for m in message._justification if m is not None]
+                y = [int(m[0]) for m in message._justification if m is not None]
                 self._axes[length - i].plot(x, y, 'bo', linestyle='solid')
             self._axes[length-i].set_ylabel(i)
 
