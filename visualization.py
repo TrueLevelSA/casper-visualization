@@ -95,19 +95,22 @@ class IndexSteps(object):
         self._log_files = log_files
         self._selected_log_file = 0
         self._log_file = log_files[self._selected_log_file]
-        self._axes = fig.subplots(self._log_file._sender_count, sharex=True, sharey=True)
+        self._axes = []
+        # self._axes = fig.subplots(self._log_file._sender_count, sharex=True, sharey=True)
+        self._select_log_file(0)
+        self._lines = []  # it'll hold the x,y values for each plot
         self._fix_axes()
-        self._selected_step = 0
-        self._min = 0
-        self._max = len(self._log_file._steps)-1
+        self._step_selected = 0
+        self._step_min = 0
+        self._step_max = len(self._log_file._steps)-1
         self._plot()
         self._print_title()
 
     def _perform_step(self, step):
-        self._selected_step += step
+        self._step_selected += step
         # clamp value
-        self._selected_step = min(self._max, self._selected_step)
-        self._selected_step = max(self._min, self._selected_step)
+        self._step_selected = min(self._step_max, self._step_selected)
+        self._step_selected = max(self._step_min, self._step_selected)
         self._plot()
 
     def _fix_axes(self):
@@ -132,18 +135,17 @@ class IndexSteps(object):
     def _plot(self):
         self._clear_axes()
 
-        current_step = self._log_file._steps[self._selected_step]
+        current_step = self._log_file._steps[self._step_selected]
         length = len(current_step._last_messages) - 1
-
+        print(self._lines)
         for i, view in enumerate(current_step._last_messages):
-            for key, in sorted(view._messages):
+            for key in sorted(view._messages):
                 message = view._messages[key]
                 x = [view.heights[m[1]] for m in message._justification if m is not None]
                 y = [int(m[0]) for m in message._justification if m is not None]
-                self._axes[length - i].plot(x, y, 'bo', linestyle='solid')
+                self._lines[length - i].set_ydata(y)
+                self._lines[length - i].set_xdata(x)
             self._axes[length-i].set_ylabel(i)
-
-        print(self._axes)
 
         # set x,y ticks for each axes
         plt.setp(
@@ -156,10 +158,10 @@ class IndexSteps(object):
         self._fig.canvas.draw()
 
     def prev_log_file(self, event):
-        self._perform_log(-1)
+        self._select_log_file(self._selected_log_file - 1)
 
     def next_log_file(self, event):
-        self._perform_log(1)
+        self._select_log_file(self._selected_log_file + 1)
 
     def _clear_axes(self):
         for axe in self._axes:
@@ -170,30 +172,29 @@ class IndexSteps(object):
         self._print_subtitle()
 
     def _print_subtitle(self):
-        self._axes[0].set_title("Step %d/%d" % (self._selected_step + 1, self._max + 1))
+        self._axes[0].set_title("Step %d/%d" % (self._step_selected + 1, self._step_max + 1))
 
-
-    def _perform_log(self, selected_log_file_step):
-        self._selected_log_file += selected_log_file_step
-        # self._plot()
-        # pass
-
-        min_index = 0
-        max_index = len(self._log_files)-1
-
-        self._selected_log_file = max_index if self._selected_log_file >= max_index else self._selected_log_file
-        self._selected_log_file = min_index if self._selected_log_file <= min_index else self._selected_log_file
-
-        self._axes[0].set_title("couille %s" % self._selected_log_file)
+    def _select_log_file(self, selected_log_file):
+        # clamp selected_log_file to possible range
+        self._selected_log_file = min(len(self._log_files) - 1, selected_log_file)
+        self._selected_log_file = max(0, selected_log_file)
         self._log_file = self._log_files[self._selected_log_file]
-        self._min = 0
-        self._max = len(self._log_file._steps)-1
-        self._selected_step = self._min
 
+        # define step bounds
+        self._step_min = 0
+        self._step_max = len(self._log_file._steps) - 1
+        self._step_selected = self._step_min
+
+        # reset axes to fit new log file datas
         self._clear_axes()
-
-        plt.setp(self._axes, xticks=[], yticks=[])
+        # plt.setp(self._axes, xticks=[], yticks=[])
         self._axes = self._fig.subplots(self._log_file._sender_count, sharex=True, sharey=True)
+
+        self._lines = []
+        for axe in self._axes:
+            self._lines.append(axe.plot([], [])[0])
+        print(self._lines)
+
         self._fix_axes()
         self._print_title()
         self._plot()
