@@ -18,3 +18,6 @@
 - Install [tcl/tk](https://tcl.tk/)
   - `sudo apt-get install tk` or `sudo pacman -S tk`
 - `pipenv run python visualization.py`
+or
+- `pipenv run python process_metrics.py`
+- `pipenv run python visualization_metrics.py`
