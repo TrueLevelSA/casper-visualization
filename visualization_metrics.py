@@ -5,7 +5,7 @@ import pandas as pd
 
 def main():
     df = pd.read_csv("gen.csv", sep=';')
-    scatter_matrix(df, )
+    scatter_matrix(df, alpha=0.2, diagonal='kde')
     plt.show()
 
 if __name__ == "__main__":
