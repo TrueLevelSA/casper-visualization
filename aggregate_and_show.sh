@@ -7,5 +7,5 @@ do
     tail -n +2 $file >> gen.csv
 done
 
-pipenv run python ./visualization_metrics.py
+pipenv run python ./visualization_metrics.py $@
 
