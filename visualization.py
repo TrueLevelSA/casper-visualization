@@ -5,13 +5,9 @@ from matplotlib.widgets import Button
 from os import listdir
 from os.path import isfile, join
 
-# utility classes
-
 import json
 
-
 class LogFile(object):
-
     def __init__(self, json_content, file_name=None):
         self._file_name = file_name if file_name is not None else "noname"
         self._steps = [Step(s) for s in json_content]
@@ -31,12 +27,20 @@ class LogFile(object):
         s += "}"
         return s
 
+    def plot(self):
+        for step in log_file._steps:
+            f, axes = plt.subplots(self._sender_count, sharex=True, sharey=True)
+            step.show_plot(self._max_length, axes)
+            plt.show()
+
+    def plot_step(self, axes, selected):
+        self._steps[selected].show_plot(self._max_length, axes)
+
     @staticmethod
     def parse_json_file(filename):
         with open(filename, 'r') as f:
             json_content = json.load(f)
         return LogFile(json_content, filename)
-
 
 class Step(object):
     def __init__(self, json_content):
@@ -51,16 +55,30 @@ class Step(object):
             self._sender_count, self._cliques, self._last_messages)
         return s
 
+    def show_plot(self, max_length, axes):
+        length = len(self._last_messages)-1
+        for i, view in enumerate(self._last_messages):
+            view.add_plot(self._sender_count, max_length, axes[length-i])
+            axes[length-i].set_ylabel(i)
+        plt.setp(axes,
+                 xticks=range(1, max_length),
+                 yticks=range(0, self._sender_count),
+                )
+
 
 class View(object):
     def __init__(self, json_content):
         _json_content = json_content[0]
-        self.heights = {}
+        self._heights = {}
         self._messages = {key: Message(value) for (key, value) in _json_content.items()}
         self.compute_heights()
 
     def __repr__(self):
         return "View%s" % self._messages
+
+    def add_plot(self, sender_count, max_length, axes):
+        for i, key in enumerate(sorted(self._messages.keys())):
+            self._messages[key].add_plot(sender_count, self._heights, axes)
 
     def get_max_length(self):
         return max([len(m._justification) for m in self._messages.values()])
@@ -69,10 +87,10 @@ class View(object):
         for name, message in self._messages.items():
             for index, block in enumerate(reversed(message._justification)):
                 if block is not None:
-                    self.heights[block[1]] = index
+                    self._heights[block[1]] = index
                     last_block = block
                 else:
-                    self.heights[None] = -1
+                    self._heights[None] = -1
 
 
 class Message(object):
@@ -86,6 +104,12 @@ class Message(object):
     def __repr__(self):
         return "Message{name: %s, justification: %s}" % (self._name, self._justification)
 
+    def add_plot(self, sender_count, heights, axes):
+        # m is None if its the genesis remove "if m is not None" to show it on the graphs
+        x = [heights[m[1]] if m is not None else heights[m] for m in self._justification if m is not None]
+        y = [-1 if m is None else int(m[0]) for m in self._justification if m is not None]
+        axes.plot(x,y, 'bo', linestyle='solid')
+
 
 class IndexSteps(object):
     _FAST_FORWARD_STEP = 5
@@ -95,26 +119,22 @@ class IndexSteps(object):
         self._log_files = log_files
         self._selected_log_file = 0
         self._log_file = log_files[self._selected_log_file]
-        self._axes = []
-        # self._axes = fig.subplots(self._log_file._sender_count, sharex=True, sharey=True)
-        self._select_log_file(0)
-        self._lines = []  # it'll hold the x,y values for each plot
+        self._axes = fig.subplots(self._log_file._sender_count, sharex=True, sharey=True)
         self._fix_axes()
-        self._step_selected = 0
-        self._step_min = 0
-        self._step_max = len(self._log_file._steps)-1
-        self._plot()
+        self._selected_step = 0
+        self._min = 0
+        self._max = len(self._log_file._steps)-1
+        self._log_file.plot_step(self._axes, self._selected_step)
         self._print_title()
 
     def _perform_step(self, step):
-        self._step_selected += step
-        # clamp value
-        self._step_selected = min(self._step_max, self._step_selected)
-        self._step_selected = max(self._step_min, self._step_selected)
+        self._selected_step += step
+        self._selected_step = self._max if self._selected_step >= self._max else self._selected_step
+        self._selected_step = self._min if self._selected_step <= self._min else self._selected_step
         self._plot()
 
     def _fix_axes(self):
-        '''if there is only one validator, there is only one axe and
+        '''if there is only one validator, there is only one axe and 
         matplotlib returns only an object, not a list of objects.
         as everything is based on loops over a list of axes it is easier to fix it here once'''
         if not isinstance(self._axes, np.ndarray):
@@ -133,37 +153,18 @@ class IndexSteps(object):
         self._perform_step(-self._FAST_FORWARD_STEP)
 
     def _plot(self):
-        self._clear_axes()
-
-        current_step = self._log_file._steps[self._step_selected]
-        length = len(current_step._last_messages) - 1
-        print(self._lines)
-        for i, view in enumerate(current_step._last_messages):
-            for key in sorted(view._messages):
-                message = view._messages[key]
-                x = [view.heights[m[1]] for m in message._justification if m is not None]
-                y = [int(m[0]) for m in message._justification if m is not None]
-                self._lines[length - i].set_ydata(y)
-                self._lines[length - i].set_xdata(x)
-            self._axes[length-i].set_ylabel(i)
-
-        # set x,y ticks for each axes
-        plt.setp(
-            self._axes,
-            xticks=range(1, self._log_file._max_length),
-            yticks=range(0, self._log_file._sender_count)
-        )
-
+        self._reset_axes()
+        self._log_file.plot_step(self._axes, self._selected_step)
         self._print_subtitle()
         self._fig.canvas.draw()
 
     def prev_log_file(self, event):
-        self._select_log_file(self._selected_log_file - 1)
+        self._perform_log(-1)
 
     def next_log_file(self, event):
-        self._select_log_file(self._selected_log_file + 1)
+        self._perform_log(1)
 
-    def _clear_axes(self):
+    def _reset_axes(self):
         for axe in self._axes:
             axe.cla()
 
@@ -172,36 +173,35 @@ class IndexSteps(object):
         self._print_subtitle()
 
     def _print_subtitle(self):
-        self._axes[0].set_title("Step %d/%d" % (self._step_selected + 1, self._step_max + 1))
+        self._axes[0].set_title("Step %d/%d" % (self._selected_step + 1, self._max + 1))
 
-    def _select_log_file(self, selected_log_file):
-        # clamp selected_log_file to possible range
-        self._selected_log_file = min(len(self._log_files) - 1, selected_log_file)
-        self._selected_log_file = max(0, selected_log_file)
+
+    def _perform_log(self, selected_log_file_step):
+        self._selected_log_file += selected_log_file_step
+        min_index = 0
+        max_index = len(self._log_files)-1
+
+        self._selected_log_file = max_index if self._selected_log_file >= max_index else self._selected_log_file
+        self._selected_log_file = min_index if self._selected_log_file <= min_index else self._selected_log_file
+
         self._log_file = self._log_files[self._selected_log_file]
+        self._min = 0
+        self._max = len(self._log_file._steps)-1
+        self._selected_step = self._min
 
-        # define step bounds
-        self._step_min = 0
-        self._step_max = len(self._log_file._steps) - 1
-        self._step_selected = self._step_min
+        self._reset_axes()
 
-        # reset axes to fit new log file datas
-        self._clear_axes()
-        # plt.setp(self._axes, xticks=[], yticks=[])
+        plt.setp(self._axes, xticks=[], yticks=[])
         self._axes = self._fig.subplots(self._log_file._sender_count, sharex=True, sharey=True)
-
-        self._lines = []
-        for axe in self._axes:
-            self._lines.append(axe.plot([], [])[0])
-        print(self._lines)
-
         self._fix_axes()
         self._print_title()
         self._plot()
 
-
 def main():
     # json files loading
+    from os import listdir
+    from os.path import isfile, join
+
     directory = "./generated"
 
     # all files (no folders) in directory
@@ -218,7 +218,7 @@ def main():
     size_x_large = size_x * 1.4
     offset_x = 0.01
 
-    fig = plt.figure(figsize=(8, 12), dpi=100)
+    fig = plt.figure(figsize=(5,5), dpi=100)
 
     callback = IndexSteps(fig, log_files)
 
@@ -248,9 +248,7 @@ def main():
 
     bprev_log = Button(axprev_log, "Prev Log")
     bprev_log.on_clicked(callback.prev_log_file)
-
     plt.show()
-
 
 if __name__ == '__main__':
     main()
