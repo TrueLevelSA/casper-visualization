@@ -21,3 +21,23 @@
 or
 - `pipenv run python process_metrics.py`
 - `pipenv run python visualization_metrics.py`
+
+### Scripts
+- `process_metrics.py`
+  Process all `stats*.log` files located in the parent folder.
+  Outputs two files:
+  - `gen.csv` which contains data points each time a validator reaches a new consensus height.
+  - `gen_averages.csv` which is the average for all values for all validators for each run.
+- `aggregate.sh`
+  Aggregates all the csv files located in `./generated/backup/` that start with the prefixed passed as argument.
+- `start_testing.sh`
+  starts multiple runs of the `blockchain` integration test. saves all the log files, as well as the `gen.csv` and `gen_averages.csv`.
+  parameters:
+  - `prefix`: prefix of the log files
+  - `nb_jobs`: number of rust testing jobs  
+
+  example: `./start_testing.sh double_round_robin 8`
+- `process.sh`
+  Extracts blockchain view from a single `blockchain` integration test run. Extracted json files are saved into `./generated/processed_states*.log`
+- `visualization.py`
+  Shows blockchain views contained in `generated/processed_states*.log`
