@@ -6,6 +6,7 @@ from os import listdir
 from os.path import isfile, join
 
 import json
+import seaborn as sns
 
 class LogFile(object):
     def __init__(self, json_content, file_name=None):
@@ -38,6 +39,7 @@ class LogFile(object):
 
     @staticmethod
     def parse_json_file(filename):
+        print(filename)
         with open(filename, 'r') as f:
             json_content = json.load(f)
         return LogFile(json_content, filename)
@@ -134,7 +136,7 @@ class IndexSteps(object):
         self._plot()
 
     def _fix_axes(self):
-        '''if there is only one validator, there is only one axe and 
+        '''if there is only one validator, there is only one axe and
         matplotlib returns only an object, not a list of objects.
         as everything is based on loops over a list of axes it is easier to fix it here once'''
         if not isinstance(self._axes, np.ndarray):
