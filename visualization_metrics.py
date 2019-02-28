@@ -160,6 +160,7 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
         plt.savefig(save_path + "relation_" + x + "_" + y + "_" + filename_suffix, dpi=600)
 
     regr_df = df.copy()
+    regr_df_new = df.copy()
     regr_df['nb_nodes'] = regr_df['nb_nodes'].apply(lambda x: 1.0/x)
     regr_y = np.ones((regr_df.shape[0], 1))
     values, err, _, _ = np.linalg.lstsq(regr_df, regr_y, rcond=None)
@@ -173,11 +174,11 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
     FACTOR_LATENCY = 1/2.0
     FACTOR_NODES = 2.5563246430404476
 
-    regr_df['overhead'] = regr_df['overhead'].apply(lambda x: x**EXPONENT_OVERHEAD)
-    regr_df['latency'] = regr_df['latency'].apply(lambda x: FACTOR_LATENCY * x**EXPONENT_LATENCY)
-    regr_df['nb_nodes'] = regr_df['nb_nodes'].apply(lambda x: FACTOR_NODES/x)
-    regr_y = np.ones((regr_df.shape[0], 1))
-    values2, err2 , _, _ = np.linalg.lstsq(regr_df, regr_y, rcond=None)
+    regr_df_new['overhead'] = regr_df_new['overhead'].apply(lambda x: x**EXPONENT_OVERHEAD)
+    regr_df_new['latency'] = regr_df_new['latency'].apply(lambda x: FACTOR_LATENCY * x**EXPONENT_LATENCY)
+    regr_df_new['nb_nodes'] = regr_df_new['nb_nodes'].apply(lambda x: FACTOR_NODES/x)
+    regr_y = np.ones((regr_df_new.shape[0], 1))
+    values2, err2 , _, _ = np.linalg.lstsq(regr_df_new, regr_y, rcond=None)
     values2 = tuple([v[0] for v in values2])
     print(values2)
     print("err2:", err2)
