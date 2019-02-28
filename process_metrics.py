@@ -4,15 +4,25 @@ from collections import defaultdict
 
 def main():
     directory = "../"
-    directory = "./generated/stats/overhead/"
-    directory = "./generated/stats/overhead_some/"
-    #directory = "./generated/stats/arbitrary/"
     #directory = "./generated/stats/rr/"
+    #directory = "./generated/stats/rr_some/"
+    #directory = "./generated/stats/rr_half/"
+
+    #directory = "./generated/stats/overhead/"
+    #directory = "./generated/stats/overhead_some/"
+    #directory = "./generated/stats/overhead_half/"
+
+    #directory = "./generated/stats/arbitrary/"
+    #directory = "./generated/stats/arbitrary_some/"
+    #directory = "./generated/stats/arbitrary_half/"
+
     #directory = "./generated/stats/double_rr/"
     #directory = "./generated/stats/double_rr_some/"
-    #directory = "./generated/stats/rr_some/"
-    #directory = "./generated/stats/overhead_some/"
-    directory = "./generated/stats/triple_rr/"
+    #directory = "./generated/stats/double_rr_half/"
+
+    #directory = "./generated/stats/triple_rr/"
+    #directory = "./generated/stats/triple_rr_some/"
+    #directory = "./generated/stats/triple_rr_half/"
 
     onlyfiles = sorted([f for f in listdir(directory) if isfile(join(directory, f)) and "stats" in f and f.endswith(".log")])
     data = []
