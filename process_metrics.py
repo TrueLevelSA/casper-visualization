@@ -4,15 +4,15 @@ from collections import defaultdict
 
 def main():
     directory = "../"
-    #directory = "./generated/stats/rr/"
+    directory = "./generated/stats/rr/"
     #directory = "./generated/stats/rr_some/"
     #directory = "./generated/stats/rr_half/"
 
-    #directory = "./generated/stats/overhead/"
+    directory = "./generated/stats/overhead/"
     #directory = "./generated/stats/overhead_some/"
     #directory = "./generated/stats/overhead_half/"
 
-    #directory = "./generated/stats/arbitrary/"
+    directory = "./generated/stats/arbitrary/"
     #directory = "./generated/stats/arbitrary_some/"
     #directory = "./generated/stats/arbitrary_half/"
 
@@ -33,6 +33,8 @@ def main():
         raw, averages = process_file(directory + f)
         list_all.extend(raw)
         list_averages.extend(averages)
+
+    print(list_averages)
     with open("gen.csv", "w+") as f:
         f.write("nb_nodes;latency;overhead\n")
         for val in list_all:
@@ -63,6 +65,7 @@ def process_file(relative_path):
 
     for dic in list_files:
         local_averages = []
+        nb_nodes = len(dic)
         for (k, v) in dic.items():
             # reset variables
             last_consensus_height = -1
@@ -79,8 +82,8 @@ def process_file(relative_path):
                 if consensus_reached > last_consensus_height:
                     for consensus_height in range(last_consensus_height, consensus_reached):
                         # -2 because i lost the war against indices
-                        local_values.append((consensus_height+1, len(dic), total_chain_height - consensus_height -2, total_number_messages-last_nb_messages))
-                    last_nb_messages = total_number_messages
+                        local_values.append((consensus_height+1, nb_nodes, total_chain_height - consensus_height -2, total_number_messages-last_nb_messages))
+                        last_nb_messages = total_number_messages
                     last_consensus_height = consensus_reached
                 max_consensus = max(max_consensus, last_consensus_height)
 

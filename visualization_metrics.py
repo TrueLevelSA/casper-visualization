@@ -8,7 +8,7 @@ from scipy import stats
 from scipy.linalg import lstsq
 import os
 import seaborn as sns
-
+from mpl_toolkits.mplot3d import Axes3D
 
 class RegrParams(object):
     def __init__(self):
@@ -19,13 +19,15 @@ class RegrParams(object):
         self.is_overhead_node_linear = True
         self.is_latency_overhead_linear = True
 
-def main(filename, undersample=False, oversample=False, plot=True, regr_params=None):
+def main(filename, undersample=False, oversample=False, plot=True, regr_params=None, filter_overhead=False):
     sns.set()
     if regr_params is None:
         regr_params = RegrParams()
 
     df = pd.read_csv(filename, sep=';')
     df = df.query("nb_nodes>1")
+    if filter_overhead:
+        df = df.query("overhead>0")
 
     if oversample and undersample:
         print("Can't both over and undersample")
@@ -72,6 +74,16 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
     #scatter_matrix(df, alpha=0.2)#, diagonal='kde')
     #plt.suptitle("Inter-dependency and KDE of the main metrics")
     #plt.show()
+    fig_3d = plt.figure()
+    ax_3d = fig_3d.add_subplot(111, projection='3d')
+    x_3d = df['nb_nodes']
+    y_3d = df['latency']
+    z_3d = df['overhead']
+    ax_3d.scatter(x_3d, y_3d, z_3d, c='r', marker='o')
+    ax_3d.set_xlabel('nb_nodes')
+    ax_3d.set_ylabel('latency')
+    ax_3d.set_zlabel('overhead')
+    plt.show()
 
     pretty = {'nb_nodes': 'Number of nodes', 'overhead': 'Overhead', 'latency': 'Latency'}
     maxima = {'nb_nodes': 19, 'overhead': 55, 'latency': 52}
@@ -168,11 +180,19 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
     print("1 = %f / nb_nodes + %f * latency + %f * overhead" % values)
     print(values)
     print("err:", err)
+
+    s = err / regr_df.shape[0]
+    s = math.sqrt(s)
+    print("rmse=", s)
+
+    (a, b, c) = values
+    values = (a, b, c, s)
+
     regr_df = df.copy()
-    EXPONENT_OVERHEAD= 1/2.6255
-    EXPONENT_LATENCY = 1/0.9825
+    EXPONENT_OVERHEAD= 1.0/2.0 #1/2.6255
+    EXPONENT_LATENCY = 1.0 #1/0.9825
     FACTOR_LATENCY = 1/2.0
-    FACTOR_NODES = 2.5563246430404476
+    FACTOR_NODES = 2.556324643040449
 
     regr_df_new['overhead'] = regr_df_new['overhead'].apply(lambda x: x**EXPONENT_OVERHEAD)
     regr_df_new['latency'] = regr_df_new['latency'].apply(lambda x: FACTOR_LATENCY * x**EXPONENT_LATENCY)
@@ -182,6 +202,13 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
     values2 = tuple([v[0] for v in values2])
     print(values2)
     print("err2:", err2)
+    s = err2 / regr_df.shape[0]
+    s = math.sqrt(s)
+    print("rmse2=", s)
+
+    (a, b, c) = values2
+    values2 = (a, b, c, s)
+
     return values, values2
 
 def plot_line(x, y, df, s, i, flip):
