@@ -3,11 +3,9 @@ set -e
 set -u
 
 SED=sed
-CSPLIT=csplit
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     SED=gsed
-    CSPLIT=gcsplit
 fi
 
 # public
