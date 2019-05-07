@@ -25,7 +25,7 @@ function run_once {
     local -r PREFIX=$1
 
     pipenv run python ./process_metrics.py
-    for f in ./generated/processed_state*.json
+    for f in ./generated/processed_blockchain_test_*.json
     do
         FILENAME=$(basename $f)
         cp $f ./generated/backup/${PREFIX}_${DATE}${FILENAME}
