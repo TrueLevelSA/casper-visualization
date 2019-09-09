@@ -20,7 +20,10 @@ class RegrParams(object):
         self.is_latency_overhead_linear = True
 
 def main(filename, undersample=False, oversample=False, plot=True, regr_params=None, filter_overhead=False):
+    # set seaborn style
     sns.set()
+
+    # parameter parsing
     if regr_params is None:
         regr_params = RegrParams()
 
@@ -41,7 +44,12 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
         pass
     except BaseException as e:
         raise e
+    # end parameter parsing
 
+    # over/undersampling in order to balance the samples and have the same amount of samples
+    # for each nunmber of nodes
+    # in case of over sampling, we take the mean amount of samples
+    # in case of under sampling, we take the min amount of samples across the number of nodes
     if undersample or oversample:
         indices = []
         nb_min = df.min(axis=0)[0]
@@ -62,6 +70,7 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
         print("Undersampling" if undersample else "Oversampling")
         print("Using %d samples for each" %nb_to_pick)
 
+        # pick the same amount of samples for each number of nodes
         for nb_nodes in range(nb_min, nb_max+1):
             nodes_indices = df[df.nb_nodes == nb_nodes].index
             if len(nodes_indices) <= 0:
@@ -71,9 +80,7 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
 
         df = df.loc[indices]
 
-    #scatter_matrix(df, alpha=0.2)#, diagonal='kde')
-    #plt.suptitle("Inter-dependency and KDE of the main metrics")
-    #plt.show()
+    # 3D plot
     fig_3d = plt.figure()
     ax_3d = fig_3d.add_subplot(111, projection='3d')
     x_3d = df['nb_nodes']
@@ -84,7 +91,9 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
     ax_3d.set_ylabel('latency')
     ax_3d.set_zlabel('overhead')
     plt.show()
+    # end 3D plot
 
+    # histograms
     pretty = {'nb_nodes': 'Number of nodes', 'overhead': 'Overhead', 'latency': 'Latency'}
     maxima = {'nb_nodes': 19, 'overhead': 55, 'latency': 52}
     for x in df.columns:
@@ -118,11 +127,18 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
         if plot:
             plt.show()
         plt.savefig(save_path + "hist_" + x + "_" + filename_suffix, dpi=600)
+    # end histograms
 
+    # variable against variable
+
+    # generate all combinations of 1-by-1 comparisons between nb_node, latency, and overhead
+    # use parameters contained in regr_params
     for (x, y, is_linear, is_vertical) in [
             ('nb_nodes', 'latency', regr_params.is_latency_node_linear, regr_params.is_latency_node_vertical),
             ('nb_nodes', 'overhead', regr_params.is_overhead_node_linear, regr_params.is_overhead_node_vertical),
             ('overhead', 'latency', regr_params.is_latency_overhead_linear, regr_params.is_latency_overhead_vertical)]:
+
+        # group by variables 1-by-1
         plot_df = df.groupby([x, y]).size().reset_index(name='Distribution (%)')
         s = plot_df['Distribution (%)'].sum()
         plot_df['Distribution (%)'] = plot_df['Distribution (%)'].apply(lambda x: 100.0*x/s)
@@ -170,7 +186,9 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
         if plot:
             plt.show()
         plt.savefig(save_path + "relation_" + x + "_" + y + "_" + filename_suffix, dpi=600)
+    # end variable against variable
 
+    # fitting to model
     regr_df = df.copy()
     regr_df_new = df.copy()
     regr_df['nb_nodes'] = regr_df['nb_nodes'].apply(lambda x: 1.0/x)
@@ -187,7 +205,9 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
 
     (a, b, c) = values
     values = (a, b, c, s)
+    # end fitting to model
 
+    # fitting to updated model
     regr_df = df.copy()
     EXPONENT_OVERHEAD= 1.0/2.0 #1/2.6255
     EXPONENT_LATENCY = 1.0 #1/0.9825
@@ -208,9 +228,12 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
 
     (a, b, c) = values2
     values2 = (a, b, c, s)
+    #end fitting to new model
 
     return values, values2
 
+# plot the lins od df[y] = s*df[x] + i
+# if flip is true then invert x and y
 def plot_line(x, y, df, s, i, flip):
     arg_min = df[x].min()
     arg_max = df[x].max()
@@ -222,7 +245,7 @@ def plot_line(x, y, df, s, i, flip):
         plt.plot(ran, line, alpha=0.7)
     print("%s = %f * %s + %f" %(y, s, x, i))
 
-
+# returns truf when we second regression is better than first
 def should_select_second(r1, p1, std1, r2, p2, std2):
     return std2 < std1
 
