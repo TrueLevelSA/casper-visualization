@@ -188,6 +188,8 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
         plt.savefig(save_path + "relation_" + x + "_" + y + "_" + filename_suffix, dpi=600)
     # end variable against variable
 
+    test_df = df.groupby(["nb_nodes"])
+
     # fitting to model
     regr_df = df.copy()
     regr_df_new = df.copy()
@@ -230,7 +232,7 @@ def main(filename, undersample=False, oversample=False, plot=True, regr_params=N
     values2 = (a, b, c, s)
     #end fitting to new model
 
-    return values, values2
+    return values, values2, test_df
 
 # plot the lins od df[y] = s*df[x] + i
 # if flip is true then invert x and y
