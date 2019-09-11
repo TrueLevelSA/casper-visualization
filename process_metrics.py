@@ -4,15 +4,15 @@ from collections import defaultdict
 
 def main():
     directory = "../"
-    directory = "./generated/stats/rr/"
+    #directory = "./generated/stats/rr/"
     #directory = "./generated/stats/rr_some/"
     #directory = "./generated/stats/rr_half/"
 
-    directory = "./generated/stats/overhead/"
+    #directory = "./generated/stats/overhead/"
     #directory = "./generated/stats/overhead_some/"
     #directory = "./generated/stats/overhead_half/"
 
-    directory = "./generated/stats/arbitrary/"
+    #directory = "./generated/stats/arbitrary/"
     #directory = "./generated/stats/arbitrary_some/"
     #directory = "./generated/stats/arbitrary_half/"
 
